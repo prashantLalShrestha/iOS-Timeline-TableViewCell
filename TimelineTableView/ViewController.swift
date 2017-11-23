@@ -115,10 +115,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if let values = datas[Array(datas.keys.sorted())[indexPath.section]]{
             let value = values[indexPath.row]
             if let timeInfo = value["timeInfo"], let title = value["title"], let description = value["description"], let timeRemaining = value["timeRemaining"] {
-                cell.timeInfo.text = timeInfo
-                cell.titleInfoLabel.text = title
-                cell.descriptionLabel.text = description
-                cell.timeRemainingLabel.text = timeRemaining
+                cell.configureCellData(timeInfo: timeInfo, title: title, description: description, timeRemaining: timeRemaining, tag: "Apple")
             }
         }
         return cell

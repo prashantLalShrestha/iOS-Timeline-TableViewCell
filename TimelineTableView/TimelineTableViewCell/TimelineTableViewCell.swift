@@ -43,10 +43,12 @@ class TimelineTableViewCell: UITableViewCell {
     
     override func draw(_ rect: CGRect) {
         
-        timeRemainingLabel.sizeToFit()
-        titleInfoLabel.sizeToFit()
-        descriptionLabel.sizeToFit()
-        
+        for layer in self.contentView.layer.sublayers! {
+            if layer is CAShapeLayer {
+                layer.removeFromSuperlayer()
+            }
+        }
+                
         pointPosition = CGPoint(x: (titleInfoLabel.frame.origin.x - offset + timeInfo.frame.maxX) / 2, y: titleInfoLabel.frame.origin.y + titleInfoLabel.intrinsicContentSize.height / 2 - pointDiameter / 2)
         
         lineStart = CGPoint(x: pointPosition.x + pointDiameter / 2, y: 0)
@@ -111,11 +113,12 @@ class TimelineTableViewCell: UITableViewCell {
         self.contentView.layer.addSublayer(shapeLayer)
     }
     
-    func configureCellData(timeInfo: String, title: String, description: String, timeRemaining: String) {
+    func configureCellData(timeInfo: String, title: String, description: String, timeRemaining: String, tag: String) {
         self.timeInfo.text = timeInfo
         self.titleInfoLabel.text = title
         self.descriptionLabel.text = description
         self.timeRemainingLabel.text = timeRemaining
+        self.tagImage.image = UIImage(named: tag)
     }
     
 }
