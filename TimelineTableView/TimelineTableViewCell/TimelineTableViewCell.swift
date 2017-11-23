@@ -52,12 +52,9 @@ class TimelineTableViewCell: UITableViewCell {
         pointPosition = CGPoint(x: (titleInfoLabel.frame.origin.x - offset + timeInfo.frame.maxX) / 2, y: titleInfoLabel.frame.origin.y + titleInfoLabel.intrinsicContentSize.height / 2 - pointDiameter / 2)
         
         lineStart = CGPoint(x: pointPosition.x + pointDiameter / 2, y: 0)
-        lineMiddle = CGPoint(x: lineStart.x, y: pointPosition.y)
         lineEnd = CGPoint(x: lineStart.x, y: self.bounds.size.height)
         
-        drawLine(from: lineStart, to: lineMiddle, color: color)
-        drawLine(from: lineMiddle, to: lineEnd, color: color)
-        
+        drawLine(from: lineStart,  to: lineEnd, color: color)
         
         drawPoint()
         
